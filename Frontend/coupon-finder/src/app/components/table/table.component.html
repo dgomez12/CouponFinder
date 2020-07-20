@@ -1,0 +1,118 @@
+<p *ngIf="alertMessage!=''">
+    <ngb-alert (close)="closeAlert()">
+        {{alertMessage}}
+    </ngb-alert>
+</p>
+<div class="form-group form-inline mt-3 ml-5">
+    Search: <input class="form-control ml-2" type="text" [(ngModel)]="product" #myInput (input)="search()"
+        placeholder="Search for product/service" />
+    <button type="button" class="btn btn-dark ml-2" (click)="openCreate()">
+        <fa-icon [icon]="faPlus"></fa-icon> Create New Coupon
+    </button>
+    <div class="form-popup" id="cForm">
+        <form (ngSubmit)="createCoupon()" class="form-container">
+            <h1>Create Coupon</h1>
+
+            <label for="couponOffer"><b>Coupon Offer</b></label>
+            <input type="text" name="couponOffer" [(ngModel)]="updateForm.couponOffer"
+                #couponOffer="ngModel" required>
+
+            <label for="couponProduct"><b>Coupon Product/Service</b></label>
+            <input type="text" name="couponProduct" [(ngModel)]="updateForm.couponProduct"
+                #couponProduct="ngModel" required>
+
+            <label for="couponDescription"><b>Coupon Description</b></label>
+            <input type="text" name="couponDescription" [(ngModel)]="updateForm.couponDescription"
+                #couponDescription="ngModel" required>
+
+            <label for="couponCode"><b>Coupon Code</b></label>
+            <input type="text" name="couponCode" [(ngModel)]="updateForm.couponCode" #couponCode="ngModel"
+                required>
+
+            <label for="couponCategory"><b>Coupon Category</b></label>
+            <input type="text" name="couponCategory" [(ngModel)]="updateForm.couponCategory"
+                #couponCategory="ngModel" required>
+
+            <button class="btn btn-primary" type="submit">Submit Coupon</button>
+            <button type="button" class="btn btn-danger ml-2" (click)="closeCreate()">Close</button>
+        </form>
+    </div>
+    <button type="button" class="btn btn-dark ml-2" (click)="orderByNew()">
+        <fa-icon [icon]="faSortAmountUp"></fa-icon> Sort New
+    </button>
+        <div ngbDropdown class="d-inline-block ml-2">
+            <button class="btn btn-dark" id="dropdownBasic1" ngbDropdownToggle>Sort By Category</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="sortByCategory(dropdown.auto)">Auto</button>
+                <button ngbDropdownItem (click)="sortByCategory(dropdown.app)">App</button>
+                <button ngbDropdownItem (click)="sortByCategory(dropdown.food)">Food</button>
+                <button ngbDropdownItem (click)="sortByCategory(dropdown.retail)">Retail</button>
+                <button ngbDropdownItem (click)="sortByCategory(dropdown.school)">School</button>
+            </div>
+        </div>
+        <img class="logo" src="../../../assets/logo.png" alt="logo">
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Coupon ID</th>
+            <th scope="col">Coupon Offer</th>
+            <th scope="col">Coupon Product/Service</th>
+            <th scope="col">Coupon Description</th>
+            <th scope="col">Coupon Code</th>
+            <th scope="col">Coupon Category</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let coupon of coupons; let i = index">
+
+            <td>{{coupon.couponId}}</td>
+            <td>{{coupon.couponOffer}}</td>
+            <td>{{coupon.couponProduct}}</td>
+            <td>{{coupon.couponDescription}}</td>
+            <td>{{coupon.couponCode}}</td>
+            <td>{{coupon.couponCategory}}</td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="deleteCoupon(coupon.couponId)">
+                    <fa-icon [icon]="faTrashAlt"></fa-icon> Delete
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="openEdit(coupon)">
+                    <fa-icon [icon]="faEdit"></fa-icon> Edit
+                </button>
+            </td>
+            <div class="form-popup" id="uForm">
+                <form (ngSubmit)="updateCoupon()" class="form-container">
+                    <h1>Edit Coupon</h1>
+
+                    <label for="couponOffer{{i}}"><b>Coupon Offer</b></label>
+                    <input type="text" name="couponOffer{{i}}" [(ngModel)]="updateForm.couponOffer"
+                        #couponOffer="ngModel" required>
+
+                    <label for="couponProduct{{i}}"><b>Coupon Product/Service</b></label>
+                    <input type="text" name="couponProduct{{i}}" [(ngModel)]="updateForm.couponProduct"
+                        #couponProduct="ngModel" required>
+
+                    <label for="couponDescription{{i}}"><b>Coupon Description</b></label>
+                    <input type="text" name="couponDescription{{i}}" [(ngModel)]="updateForm.couponDescription"
+                        #couponDescription="ngModel" required>
+
+                    <label for="couponCode{{i}}"><b>Coupon Code</b></label>
+                    <input type="text" name="couponCode{{i}}" [(ngModel)]="updateForm.couponCode" #couponCode="ngModel"
+                        required>
+
+                    <label for="couponCategory{{i}}"><b>Coupon Category</b></label>
+                    <input type="text" name="couponCategory{{i}}" [(ngModel)]="updateForm.couponCategory"
+                        #couponCategory="ngModel" required>
+
+                    <button class="btn btn-primary" type="submit">Submit edit</button>
+                    <button type="button" class="btn btn-danger ml-2" (click)="closeEdit()">Close</button>
+                </form>
+            </div>
+        </tr>
+    </tbody>
+</table>
