@@ -5,8 +5,9 @@ Web application where anyone can share their awesome coupon codes with everyone.
 ## Technologies used
 
 - Spring boot
-- AWS Elastic beanstalk
 - MySQL
+- AWS Elastic beanstalk
+- Bootstrap
 - Angular
 - VSCode
 - Intellij
@@ -18,3 +19,5 @@ Web application where anyone can share their awesome coupon codes with everyone.
 - Full stack application using Angular and Spring
 
 ## Demo
+
+![Demo](Demo/CouponFinder.gif)
