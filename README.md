@@ -7,6 +7,7 @@ Web application where anyone can share their awesome coupon codes with everyone.
 - Spring boot
 - MySQL
 - AWS Elastic beanstalk
+- AWS S3
 - Bootstrap
 - Angular
 - VSCode
